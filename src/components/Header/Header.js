@@ -6,22 +6,38 @@ import './Header.css';
 
 import Search from './Search/Search';
 
-//////////////////////////////////////////////////////// THIS COMPONENT IS BEING RENDERED IN THE *APP* COMPONENT
+/////////////////////////////// THIS COMPONENT IS BEING RENDERED IN THE *APP* COMPONENT
 
 export default class Header extends Component {
+
+  constructor(){
+    super();
+    this.state = {
+      search: ''
+    }
+
+    this.searchChange = this.searchChange.bind(this);
+  }
+
+  searchChange(e){
+    this.setState({
+        search: e.target.value
+    })
+  }
+
   render() {
     return (
       <section className="Header__parent">
         <section className="Header__content">
 
           {/* Displays the mountain icon in the header */}
-          <div className="Header__company-info">
+            <div className="Header__company-info">
             <CompanyIcon id="Header__company-icon" />
             <span>Social Mountain</span>
-          </div>
+             </div>
 
           {/* Displays the search bar */}
-          <div className="Header__right">
+          <div className="Header__right" onChange={this.searchChange}>
             <Search />
 
             {/* Displays the profile icon */}
